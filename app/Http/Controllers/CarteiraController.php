@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Carteira;
+use App\Http\Requests\CarteiraRequest;
 
 class CarteiraController extends Controller
 {
@@ -39,13 +40,15 @@ class CarteiraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CarteiraRequest $request)
     {
+        $validated = $request->validated();   
 
         $carteira = new Carteira;
         $carteira->descricao = $request->descricao;
         $carteira->sigla = $request->sigla;
-        $carteira->save();
+        $carteira->save($validated);        
+        request()->session()->flash('alert-info', 'Carteira cadastrada com sucesso.');
         
         return redirect("/carteira/{$carteira->idCarteira}");
     }
@@ -81,12 +84,15 @@ class CarteiraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CarteiraRequest $request, $id)
     {        
+        $validated = $request->validated();
+
         $carteira = Carteira::find($id);
         $carteira->descricao = $request->descricao;
         $carteira->sigla = $request->sigla;
-        $carteira->update();
+        $carteira->update($validated);
+        request()->session()->flash('alert-info', 'Carteira atualizada com sucesso.');
         
         return redirect("/carteira");
     }

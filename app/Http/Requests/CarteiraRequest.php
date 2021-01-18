@@ -3,12 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class TipoRequest extends FormRequest
+class CarteiraRequest extends FormRequest
 {
-
-    protected $primaryKey = 'idTipo';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,9 +25,9 @@ class TipoRequest extends FormRequest
     {
         $rules = [
             'descricao' => 'required',
-            'sigla' => 'required|unique:tipos,sigla,' . $this->tipo .',idTipo'
+            'sigla' => 'required|unique:carteiras,sigla,' . $this->carteira .',idCarteira'
         ];
-        
+
         return $rules;
     }
 

@@ -46,6 +46,7 @@ class OperacaoController extends Controller
         $operacao->operacao = $request->operacao;
         $operacao->data = $request->data;
         $operacao->valor = $request->valor;
+        $operacao->qtde = $request->qtde;
         $operacao->save();
         
         return redirect("/operacao/{$operacao->idOperacao}");
@@ -88,6 +89,7 @@ class OperacaoController extends Controller
         $operacao->ticker = $request->ticker;
         $operacao->operacao = $request->operacao;
         $operacao->data = $request->data;
+        $operacao->qtde = $request->qtde;
         $operacao->valor = $request->valor;
         $operacao->update();
         

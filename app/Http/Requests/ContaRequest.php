@@ -3,12 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class TipoRequest extends FormRequest
+class ContaRequest extends FormRequest
 {
-
-    protected $primaryKey = 'idTipo';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,19 +24,20 @@ class TipoRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'descricao' => 'required',
-            'sigla' => 'required|unique:tipos,sigla,' . $this->tipo .',idTipo'
+            'corretora' => 'required',
+            'conta' => 'required|unique:contas,conta,' . $this->idconta .',idConta'
+            
         ];
-        
+
         return $rules;
     }
 
     public function messages()
     {
         return [
-            'descricao.required' => 'A descrição não pode ficar em branco',
-            'sigla.required' => 'A sigla não pode ficar em branco e deve ser única',
-            'sigla.unique' => 'Esta sigla já existe no cadastro',
+            'corretora.required' => 'A descrição da corretora não pode ficar em branco',
+            'conta.required' => 'O número da conta não pode ficar em branco e deve ser única',
+            'conta.unique' => 'Esta Conta já existe no cadastro',
         ];
     }
 }

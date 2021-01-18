@@ -84,9 +84,10 @@ class TipoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(TipoRequest $request, $id)
-    {        
-        $validated = $request->validated();        
+    {     
 
+        $validated = $request->validated();        
+        //dd($validated);
         $tipo = Tipo::find($id);
         $tipo->descricao = $request->descricao;
         $tipo->sigla = $request->sigla;

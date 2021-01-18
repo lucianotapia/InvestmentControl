@@ -3,12 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class TipoRequest extends FormRequest
+use App\Models\Operacao;
+
+class OperacaoRequest extends FormRequest
 {
-
-    protected $primaryKey = 'idTipo';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,20 +25,20 @@ class TipoRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'descricao' => 'required',
-            'sigla' => 'required|unique:tipos,sigla,' . $this->tipo .',idTipo'
+        $rules = [            
+            'operacao' => ['required', Rule::in(Operacao::operacao_tipo())],
+            'data' => 'required|date_format:d/m/Y',
+            'valor' => 'required|numeric'
         ];
-        
+
         return $rules;
     }
 
     public function messages()
     {
         return [
-            'descricao.required' => 'A descrição não pode ficar em branco',
-            'sigla.required' => 'A sigla não pode ficar em branco e deve ser única',
-            'sigla.unique' => 'Esta sigla já existe no cadastro',
+            'data.required'    => 'A data não pode ficar em branco.',
+            'data.numeric'    => 'O valor deve ser numérico.',
         ];
     }
 }

@@ -25,8 +25,12 @@ class AporteRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        //'carteira_id' => ['required', Rule::in(Aporte::carteiras())],
+        //'conta' => ['required', Rule::in(Aporte::contas())],
+
+        $rules = [            
             'data' => 'required|date_format:d/m/Y',
+            'valor' => 'required|numeric'
         ];
 
         return $rules;
@@ -36,6 +40,7 @@ class AporteRequest extends FormRequest
     {
         return [
             'data.required'    => 'A data não pode ficar em branco.',
+            'data.numeric'    => 'O valor deve ser numérico.',
         ];
     }
 }

@@ -16,7 +16,7 @@
                 <li><a class="dropdown-item" href="{{ url('/conta') }}">Conta</a></li>
                 <li><a class="dropdown-item" href="{{ url('/tipo') }}">Tipo</a></li>
                 <li><a class="dropdown-item" href="{{ url('/usuario') }}">Usuário</a></li>
-                <li><a class="dropdown-item" href="{{ url('/carteira') }}">Operações</a></li>
+                <li><a class="dropdown-item" href="{{ url('/operacao') }}">Operações</a></li>
             </ul>
             </li>
         </ul>

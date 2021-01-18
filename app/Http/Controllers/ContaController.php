@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Conta;
+use App\Http\Requests\ContaRequest;
 
 class ContaController extends Controller
 {
@@ -39,14 +40,16 @@ class ContaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContaRequest $request)
     {
+        $validated = $request->validated();
         $conta = new Conta;
         $conta->corretora = $request->corretora;
         $conta->conta = $request->conta;
-        $conta->save();
+        $conta->save($validated);
+        request()->session()->flash('alert-info', 'Conta cadastrada com sucesso.');
         
-        return redirect("/conta/{$conta->idConta}");
+        return redirect("/conta");
     }
 
     /**
@@ -80,12 +83,15 @@ class ContaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ContaRequest $request, $id)
     {        
+        $validated = $request->validated();
+
         $conta = Conta::find($id);
         $conta->corretora = $request->corretora;
-        $conta->conta = $request->conta;
-        $conta->update();
+        $conta->conta = $request->conta;        
+        $conta->update($validated);
+        request()->session()->flash('alert-info', 'Conta atualizada com sucesso.');
         
         return redirect("/conta");
     }

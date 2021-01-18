@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('content')
-    <form method="post" action="/tipo">
+    <form method="POST" action="/tipo">
         @csrf
         @include('tipo.partials.form')
     </form>

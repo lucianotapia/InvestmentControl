@@ -10,5 +10,5 @@ class Conta extends Model
     use HasFactory;
 
     protected $guarded = ['idConta'];
-    protected $primaryKey = 'idConta';
+    protected $primaryKey = 'idConta';               
 }

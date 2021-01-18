@@ -1,9 +1,9 @@
 @extends('home')
 
 @section('content')
-    <form method="POST" action="/tipo/{{ $tipo->id }}">
+    <form method="post" action="/tipo/{{ $tipo->idTipo }}">
         @csrf
-        @method('patch')
+        @method('PATCH')
         @include('tipo.partials.form')
     </form>
 @endsection
