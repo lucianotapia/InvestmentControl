@@ -9,10 +9,20 @@
                 <label for="exampleFormControlInput1" class="form-label">Ticker</label>
                 <input type="text" name="ticker" class="form-control" value="{{ old('operacao', $operacao->ticker)  }}">
             </div>
-            <div class="col">
+            <!-- <div class="col">
                 <label for="exampleFormControlInput1" class="form-label">Operação</label>
                 <input type="text" class="form-control" name="operacao" value="{{ old('operacao', $operacao->operacao)  }}">                
             </div>
+            -->
+            <div class="col">
+                <label for="exampleFormControlInput1" class="form-label">Operação</label>
+                <select name="operacao" class="form-control">
+                    <option value="">Selecione a operação</option>
+                    <option value="C">Compra</option>
+                    <option value="V">Venda</option>
+                </select>
+            </div>
+
         </div>
 
         <div class="row">
